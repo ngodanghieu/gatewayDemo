@@ -17,7 +17,7 @@ import java.util.Map;
 @Configuration
 public class CustomFilter implements Filter {
     @Value("${app.public-key}")
-    private String public_key ;
+    private String public_key;
 
     @Override
     public void init(FilterConfig filterConfig) {
@@ -27,15 +27,15 @@ public class CustomFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) servletRequest;
-        HttpServletResponse response  = (HttpServletResponse) servletResponse;
+        HttpServletResponse response = (HttpServletResponse) servletResponse;
         String token = httpRequest.getHeader(Constant.FilterConstant.HEADER_AUTHENTICATION);
-        ApiVerifyToken apiVerifyToken = new ApiVerifyToken(token,public_key);
+        ApiVerifyToken apiVerifyToken = new ApiVerifyToken(token, public_key);
         Map<String, Object> result = apiVerifyToken.verifyToken();
 
-        if (result != null){
-            httpRequest.setAttribute("user_name",result.get("user_name"));
-            filterChain.doFilter(httpRequest,servletResponse);
-        }else {
+        if (result != null) {
+            httpRequest.setAttribute("user_name", result.get("user_name"));
+            filterChain.doFilter(httpRequest, servletResponse);
+        } else {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             response.getOutputStream().write(restResponseBytes(ResponseConstant.ERROR_USER_NOT_ROLE));
             return;

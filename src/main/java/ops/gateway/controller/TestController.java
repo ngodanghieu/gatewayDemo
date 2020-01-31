@@ -30,47 +30,41 @@ public class TestController {
     private TestService testService;
 
     @GetMapping(value = "test")
-    public ResponseEntity<?> testResponse(HttpServletRequest request){
+    public ResponseEntity<?> testResponse(HttpServletRequest request) {
         String user_name = (String) request.getAttribute("user_name");
 
         try {
             ResponseEntity<String> response = testService.callCheckerAnMaker(new SampleDto());
-            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name, new Gson().fromJson(response.toString(),ResponseDTO.class)), HttpStatus.OK);
-        }catch (HttpClientErrorException ex){
-            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name,new Gson().fromJson(ex.getResponseBodyAsString(),ResponseDTO.class) ), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name, new Gson().fromJson(response.toString(), ResponseDTO.class)), HttpStatus.OK);
+        } catch (HttpClientErrorException ex) {
+            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name, new Gson().fromJson(ex.getResponseBodyAsString(), ResponseDTO.class)), HttpStatus.UNAUTHORIZED);
         }
     }
 
     @SneakyThrows
     @LoggingActivityGateway
-    @PostMapping(value = "sample" )
-    public ResponseEntity<?> sample(@RequestBody @Valid SampleDto sampleDto, BindingResult bindingResult,HttpServletRequest request) {
+    @PostMapping(value = "sample")
+    public ResponseEntity<?> sample(@RequestBody @Valid SampleDto sampleDto, BindingResult bindingResult, HttpServletRequest request) {
         String user_name = "null";
-       try {
-           user_name = (String) request.getAttribute("user_name");
+        try {
 
-//           if (bindingResult.hasErrors() || sampleDto == null) {
-//               String message = sampleDto == null ?"[session_id] truyền vào không được null":bindingResult.getFieldError("sessionId").getDefaultMessage();
-//               return new ResponseEntity<ResponseDTO>(ResponseConstant.ERROR_INVALID_INPUT(message), HttpStatus.OK);
-//           }
+            user_name = (String) request.getAttribute("user_name");
+            ResponseEntity<String> response = testService.callCheckerAnMaker(sampleDto);
 
-//           ResponseEntity<String> response = testService.callCheckerAnMaker(sampleDto);
-
-
-//           return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name,Util.convert(response.getBody())), HttpStatus.OK);
-       }catch (HttpClientErrorException ex){
-           return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name,new Gson().fromJson(ex.getResponseBodyAsString(),ResponseDTO.class) ), HttpStatus.UNAUTHORIZED);
-       }
-        return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name,new Gson().fromJson("getResponseBodyAsString",ResponseDTO.class) ), HttpStatus.UNAUTHORIZED);
-
+            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name,
+                    Util.convert(response.getBody())),
+                    HttpStatus.OK);
+        } catch (HttpClientErrorException ex) {
+            return new ResponseEntity<ResponseDTO>(ResponseConstant.responseOK(user_name, Util.convert(ex.getResponseBodyAsString())),
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
     @LoggingActivityGateway
     @PostMapping(value = "demo", consumes = "application/json", produces = "application/json")
-    public ResponseEntity<?> test(@RequestBody SampleDto sampleDto){
-        return new ResponseEntity<SampleDto>(sampleDto,HttpStatus.OK);
+    public ResponseEntity<?> test(@RequestBody SampleDto sampleDto) {
+        return new ResponseEntity<SampleDto>(sampleDto, HttpStatus.OK);
     }
-
 
 
 }

@@ -26,8 +26,8 @@ public class SampleDto implements Serializable {
     private String sessionId;
 
     @NotNull(message = Constant.ErrorValidation.MESSAGE_NOT_NULL_INPUT_FILE_NAME)
-    @Length(max = 20, message = Constant.ErrorValidation.MESSAGE_ERROR_OTHER)
-    @Pattern(regexp="^[A-Za-z0-9]*$",message=Constant.ErrorValidation.MESSAGE_ERROR_OTHER)
+    @Length(max = 20, message = Constant.ErrorValidation.MESSAGE_ERROR_MAX)
+    @Pattern(regexp = "^[A-Za-z0-9]*$", message = Constant.ErrorValidation.MESSAGE_ERROR_REGULAR)
     @JsonProperty("input_file_name")
     private String input_file_name;
 

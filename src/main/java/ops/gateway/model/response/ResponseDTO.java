@@ -20,36 +20,37 @@ public class ResponseDTO {
     @JsonProperty("data")
     private Body data;
 
-    public ResponseDTO(String code ,String message) {
+    public ResponseDTO(String code, String message) {
         if (code != null && message != null)
-            this.meta = new Meta(code,message);
-    }
-    public ResponseDTO(String code , String message, List<String> list) {
-        if (code != null && message != null)
-            this.meta = new Meta(code,message,list);
+            this.meta = new Meta(code, message);
     }
 
-    public ResponseDTO(String code ,String message, String user_name) {
+    public ResponseDTO(String code, String message, List<String> list) {
         if (code != null && message != null)
-            this.meta = new Meta(code,message);
+            this.meta = new Meta(code, message, list);
+    }
+
+    public ResponseDTO(String code, String message, String user_name) {
+        if (code != null && message != null)
+            this.meta = new Meta(code, message);
 
         if (user_name != null)
             this.data = new Body(user_name);
     }
 
-    public ResponseDTO(String code ,String message, Object object) {
+    public ResponseDTO(String code, String message, Object object) {
         if (code != null && message != null)
-            this.meta = new Meta(code,message);
+            this.meta = new Meta(code, message);
 
         if (object != null)
             this.data = new Body(object);
     }
 
-    public ResponseDTO(String code ,String message,String user_name, Object object) {
+    public ResponseDTO(String code, String message, String user_name, Object object) {
         if (code != null && message != null)
-            this.meta = new Meta(code,message);
+            this.meta = new Meta(code, message);
 
-            this.data = new Body(user_name,object);
+        this.data = new Body(user_name, object);
     }
 }
 

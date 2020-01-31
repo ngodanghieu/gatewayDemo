@@ -13,13 +13,13 @@ import java.util.concurrent.ThreadLocalRandom;
 @Service
 public class TestService {
 
-    private static final String URL = "http://192.168.137.74:8080/pay-maker-checker" ;
+    private static final String URL = "http://192.168.137.74:8080/pay-maker-checker";
 //    private static final String URL = "http://localhost:8080api/demo" ;
 
-    public ResponseEntity<String> callCheckerAnMaker(SampleDto sampleDto){
+    public ResponseEntity<String> callCheckerAnMaker(SampleDto sampleDto) {
         HttpHeaders headers = new HttpHeaders();
-        headers.add(Constant.FilterConstant.X_API_KEY,"ops-pay-key");
-        headers.add(Constant.FilterConstant.SECRET,"ops-pay-secret");
+        headers.add(Constant.FilterConstant.X_API_KEY, "ops-pay-key");
+        headers.add(Constant.FilterConstant.SECRET, "ops-pay-secret");
         headers.setContentType(MediaType.APPLICATION_JSON);
         JSONObject personJsonObject = new JSONObject();
         ThreadLocalRandom random = ThreadLocalRandom.current();
@@ -27,6 +27,6 @@ public class TestService {
         personJsonObject.put("session_id", sampleDto.getSessionId());
         RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         HttpEntity<String> request = new HttpEntity<>(personJsonObject.toString(), headers);
-        return restTemplate.postForEntity( URL, request , String.class );
+        return restTemplate.postForEntity(URL, request, String.class);
     }
 }

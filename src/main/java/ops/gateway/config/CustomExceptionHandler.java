@@ -14,15 +14,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-@SuppressWarnings({"unchecked","rawtypes"})
 @ControllerAdvice
-public class CustomExceptionHandler extends ResponseEntityExceptionHandler
-{
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         String[] arr = ex.getLocalizedMessage().split(",");
         List<String> details = new ArrayList<>();
-        if (arr != null && arr.length > 0){
+        if (arr != null && arr.length > 0) {
             for (String s : arr) {
                 String result = s.substring(s.indexOf("["));
                 details.add(result);
@@ -31,7 +29,7 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler
         details = details.stream()
                 .distinct()
                 .collect(Collectors.toList());
-        ResponseDTO responseDTO = ResponseConstant.ERROR_INVALID_INPUT_EXCEPTION(Constant.MessageApi.VALIDATION_FALSE,details);
+        ResponseDTO responseDTO = ResponseConstant.ERROR_INVALID_INPUT_EXCEPTION(Constant.MessageApi.VALIDATION_FALSE, details);
         return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
     }
 

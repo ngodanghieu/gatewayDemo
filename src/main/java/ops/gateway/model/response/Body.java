@@ -9,7 +9,6 @@ import lombok.Setter;
 
 @Setter
 @Getter
-//@AllArgsConstructor
 @NoArgsConstructor
 public class Body {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -17,10 +16,6 @@ public class Body {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @JsonProperty("extra_data")
     private Object extra_data;
-
-//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-//    @JsonProperty("function_name")
-//    private String function_name;
 
     public Body(String user_name, Object data) {
         this.user_name = user_name;

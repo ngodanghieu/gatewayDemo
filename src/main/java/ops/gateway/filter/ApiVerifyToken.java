@@ -19,7 +19,7 @@ public class ApiVerifyToken {
     private String public_key;
     private String token;
 
-    public ApiVerifyToken(String token,String public_key) {
+    public ApiVerifyToken(String token, String public_key) {
         this.token = token;
         this.public_key = public_key;
     }
@@ -48,17 +48,17 @@ public class ApiVerifyToken {
             Map<String, Object> jwtClaims = jwtDecoded.getClaimsMap();
             Map<String, Object> object_permissions = (Map<String, Object>) jwtClaims.get(Constant.FilterConstant.ROLE);
             if (checkVinPayCashbackManagement(object_permissions))
-                return  jwtClaims;
+                return jwtClaims;
             else
                 return null;
-        }catch (Exception e){
+        } catch (Exception e) {
 
             return null;
         }
 
     }
 
-    private Boolean checkVinPayCashbackManagement(Map< String,Object> object_permissions){
+    private Boolean checkVinPayCashbackManagement(Map<String, Object> object_permissions) {
         return object_permissions.get(Constant.FilterConstant.VIN_PAY_CASH_BACK_MANAGEMENT) != null;
     }
 }

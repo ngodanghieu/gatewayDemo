@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 
 public class Util {
-    public static Object mapperObject(ResponseEntity<?> data){
+    public static Object mapperObject(ResponseEntity<?> data) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             return mapper.writeValueAsString(data);
@@ -17,6 +17,6 @@ public class Util {
 
     public static Object convert(String val) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
-        return  objectMapper.readValue(val,Object.class);
+        return objectMapper.readValue(val, Object.class);
     }
 }
