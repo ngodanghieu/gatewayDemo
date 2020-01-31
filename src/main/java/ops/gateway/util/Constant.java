@@ -11,6 +11,7 @@ public class Constant {
         public static final String UNAUTHORIZED = "401000";
         public static final String USER_NOT_ROLE = "401001";
         public static final String INVALID_INPUT = "400001";
+        public static final String BAG_REQUEST = "400000";
     }
 
     public static  class ErrorValidation{

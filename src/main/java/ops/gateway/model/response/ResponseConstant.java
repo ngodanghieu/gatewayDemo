@@ -9,7 +9,7 @@ public class ResponseConstant {
 
     public static ResponseDTO ERROR_INVALID_INPUT(String err){return  new ResponseDTO(Constant.ErrorCodeApi.INVALID_INPUT,err);}
 
-    public static ResponseDTO ERROR_INVALID_INPUT_EXCEPTION(String err,List<String> list){return  new ResponseDTO(Constant.ErrorCodeApi.INVALID_INPUT,err, list);}
+    public static ResponseDTO ERROR_INVALID_INPUT_EXCEPTION(String err,List<String> list){return  new ResponseDTO(Constant.ErrorCodeApi.BAG_REQUEST,err, list);}
 
     public static ResponseDTO responseOK(String user_name){ return new ResponseDTO(Constant.ErrorCodeApi.SUCCESS,Constant.MessageApi.SUCCESS,user_name);}
 
