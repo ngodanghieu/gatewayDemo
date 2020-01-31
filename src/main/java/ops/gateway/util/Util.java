@@ -14,4 +14,9 @@ public class Util {
             return null;
         }
     }
+
+    public static Object convert(String val) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return  objectMapper.readValue(val,Object.class);
+    }
 }

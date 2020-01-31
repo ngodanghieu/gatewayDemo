@@ -13,10 +13,17 @@ public class Constant {
         public static final String INVALID_INPUT = "400001";
     }
 
+    public static  class ErrorValidation{
+        public static final String MESSAGE_NOT_NULL_INPUT_FILE_NAME ="[input_file_name] truyền vào không được null";
+        public static final String MESSAGE_NOT_NULL_SESSION ="[session] truyền vào không được null";
+        public static final String MESSAGE_ERROR_OTHER ="[input_file_name]Lỗi khác";
+    }
+
     public static class MessageApi {
         public static final String SUCCESS = "Thành công";
         public static final String USER_NOT_ROLE = "User Không được phép truy cập chức năng";
         public static final String PAY_MAKER_CHECKER_FALSE = "Sai key connect tại pay-maker-checker";
+        public static final String VALIDATION_FALSE = "Validation Failed";
     }
 
     public class FilterConstant {

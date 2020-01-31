@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @AllArgsConstructor
@@ -15,12 +17,16 @@ public class ResponseDTO {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Meta meta;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("body")
-    private Body body;
+    @JsonProperty("data")
+    private Body data;
 
     public ResponseDTO(String code ,String message) {
         if (code != null && message != null)
             this.meta = new Meta(code,message);
+    }
+    public ResponseDTO(String code , String message, List<String> list) {
+        if (code != null && message != null)
+            this.meta = new Meta(code,message,list);
     }
 
     public ResponseDTO(String code ,String message, String user_name) {
@@ -28,7 +34,7 @@ public class ResponseDTO {
             this.meta = new Meta(code,message);
 
         if (user_name != null)
-            this.body = new Body(user_name);
+            this.data = new Body(user_name);
     }
 
     public ResponseDTO(String code ,String message, Object object) {
@@ -36,52 +42,52 @@ public class ResponseDTO {
             this.meta = new Meta(code,message);
 
         if (object != null)
-            this.body = new Body(object);
+            this.data = new Body(object);
     }
 
     public ResponseDTO(String code ,String message,String user_name, Object object) {
         if (code != null && message != null)
             this.meta = new Meta(code,message);
 
-            this.body = new Body(user_name,object);
+            this.data = new Body(user_name,object);
     }
 }
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-class Meta {
-    private String code;
-    private String message;
-}
+//@Setter
+//@Getter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//class Meta {
+//    private String code;
+//    private String message;
+//}
 
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
-class Body {
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    private String user_name;
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("data")
-    private Object data;
-
-    @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JsonProperty("function_name")
-    private String function_name;
-
-    public Body(String user_name, Object data) {
-        this.user_name = user_name;
-        this.data = data;
-    }
-
-    public Body(String user_name) {
-        this.user_name = user_name;
-    }
-
-    public Body(Object object) {
-        this.data = object;
-    }
-}
+//@Setter
+//@Getter
+//@AllArgsConstructor
+//@NoArgsConstructor
+//class Body {
+//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+//    private String user_name;
+//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+//    @JsonProperty("data")
+//    private Object data;
+//
+//    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+//    @JsonProperty("function_name")
+//    private String function_name;
+//
+//    public Body(String user_name, Object data) {
+//        this.user_name = user_name;
+//        this.data = data;
+//    }
+//
+//    public Body(String user_name) {
+//        this.user_name = user_name;
+//    }
+//
+//    public Body(Object object) {
+//        this.data = object;
+//    }
+//}
 
