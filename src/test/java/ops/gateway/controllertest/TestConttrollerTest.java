@@ -6,7 +6,7 @@ import com.google.gson.Gson;
 import ops.gateway.controller.TestController;
 import ops.gateway.model.request.SampleDto;
 import ops.gateway.model.response.ResponseDTO;
-import ops.gateway.service.TestService;
+import ops.gateway.service.impl.TestService;
 import ops.gateway.util.Constant;
 import org.jose4j.json.internal.json_simple.JSONObject;
 import org.junit.jupiter.api.BeforeEach;

@@ -2,7 +2,6 @@ package ops.gateway.config;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ops.gateway.model.response.ResponseConstant;
 import ops.gateway.model.response.ResponseDTO;
@@ -26,9 +25,9 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
                 details.add(result);
             }
         }
-        details = details.stream()
-                .distinct()
-                .collect(Collectors.toList());
+//        details = details.stream()
+//                .distinct()
+//                .collect(Collectors.toList());
         ResponseDTO responseDTO = ResponseConstant.ERROR_INVALID_INPUT_EXCEPTION(Constant.MessageApi.VALIDATION_FALSE, details);
         return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
     }

@@ -16,9 +16,13 @@ public class Constant {
 
     public static class ErrorValidation {
         public static final String MESSAGE_NOT_NULL_INPUT_FILE_NAME = "[input_file_name] truyền vào không được null";
+        public static final String MESSAGE_NOT_NULL_TRANSACTION_ID = "[transaction_id] truyền vào không được null";
         public static final String MESSAGE_NOT_NULL_SESSION = "[session] truyền vào không được null";
         public static final String MESSAGE_ERROR_MAX = "[input_file_name] không được vượt quá 20 ký tự";
+        public static final String MESSAGE_ERROR_DES = "[desc] không được vượt quá 20 ký tự";
         public static final String MESSAGE_ERROR_REGULAR = "[input_file_name] không được chứa ký tự đặc biệt";
+        public static final String MESSAGE_ERROR_AMOUNT = "[amount] phải là một số nguyên dương";
+
     }
 
     public static class MessageApi {
